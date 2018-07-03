@@ -124,6 +124,7 @@ class PVEmulatorViewController: PVEmulatorViewControllerRootClass, PVAudioDelega
     var mFiDPadUpisPressed = false
     var mFiDPadDownisPressed = false
     var mFiDPadRightisPressed = false
+    var shouldWaitToShowMFiDemo = false
 
     required init(game: PVGame, core: PVEmulatorCore, system: PVSystem) {
         self.core = core
@@ -939,12 +940,12 @@ class PVEmulatorViewController: PVEmulatorViewControllerRootClass, PVAudioDelega
             mFiPlusHUDButtonXLabel?.text = "START"
             mFiPlusHUDButtonXLabel?.textColor = assignedLabelColor
             mFiPlusHUDButtonX?.borderColor = assignedButtonColor
-            mFiPlusHUDButtonALabel?.text = "R3"
-            mFiPlusHUDButtonALabel?.textColor = assignedLabelColor
-            mFiPlusHUDButtonA?.borderColor = assignedButtonColor
             mFiPlusHUDDPadDownLabel?.text = "L3"
             mFiPlusHUDDPadDownLabel?.textColor = assignedLabelColor
             mFiPlusHUDDPadDown?.isHidden = false
+            mFiPlusHUDButtonALabel?.text = "R3"
+            mFiPlusHUDButtonALabel?.textColor = assignedLabelColor
+            mFiPlusHUDButtonA?.borderColor = assignedButtonColor
         case "N64":
             mFiPlusHUDButtonXLabel?.text = "C◀"
             mFiPlusHUDButtonYLabel?.text = "C▲"
@@ -1051,11 +1052,16 @@ class PVEmulatorViewController: PVEmulatorViewControllerRootClass, PVAudioDelega
     }
     
     func showMFiPlusDemo() {
+        var wait: TimeInterval = 0.0
+        if shouldWaitToShowMFiDemo {
+            wait = 7.0
+            shouldWaitToShowMFiDemo = false
+        }
         mFiPlusComboViewIsActive = true
-        UIView.animate(withDuration: 1.5, delay: 0.0, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 1.5, delay: wait, options: [.curveEaseInOut], animations: {
             self.mFiPlusHUDGradientView?.alpha = 1.0
         }, completion: nil)
-        UIView.animate(withDuration: 1.0, delay: 0.0, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 1.0, delay: wait, options: [.curveEaseInOut], animations: {
             self.mFiPlusComboView?.alpha = 1.0
         }, completion: { (finished: Bool) in
             self.pulseMFiCombo()
@@ -1852,6 +1858,9 @@ class PVEmulatorViewController: PVEmulatorViewControllerRootClass, PVAudioDelega
         // Setup MFi+ Views
         setupMFiPlusViews(for: controller!)
         shouldShowMFiPlusDemo = true
+        #if os(tvOS)
+        shouldWaitToShowMFiDemo = true
+        #endif
         
         connectControllers()
         
@@ -1864,7 +1873,7 @@ class PVEmulatorViewController: PVEmulatorViewControllerRootClass, PVAudioDelega
             setNeedsUpdateOfHomeIndicatorAutoHidden()
         }
 #endif
-        //Hide MFi+ Views
+        // Hide MFi+ Views
 //        if !mFiPlusComboViewIsActive && !shouldShowMFiPlusCombo {
 //            hideMFIPlusCombo()
 //            hideMFiPlusHUD()
