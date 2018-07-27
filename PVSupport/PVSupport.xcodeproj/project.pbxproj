@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -118,6 +118,10 @@
 		B302F89D20B73D6400C5E502 /* PVProvenanceLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PVProvenanceLogging.m; sourceTree = "<group>"; };
 		B302F89E20B73D6400C5E502 /* PVLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PVLogging.m; sourceTree = "<group>"; };
 		B302F89F20B73D6500C5E502 /* PVCocoaLumberJackLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PVCocoaLumberJackLogging.m; sourceTree = "<group>"; };
+		B3075766210ACAE20072B8B5 /* tvOSOutput.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; name = tvOSOutput.xcfilelist; path = Carthage/tvOSOutput.xcfilelist; sourceTree = SOURCE_ROOT; };
+		B3075767210ACAE30072B8B5 /* iOSOutput.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; name = iOSOutput.xcfilelist; path = Carthage/iOSOutput.xcfilelist; sourceTree = SOURCE_ROOT; };
+		B307576C210ACF320072B8B5 /* tvOSInput.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; name = tvOSInput.xcfilelist; path = Carthage/tvOSInput.xcfilelist; sourceTree = SOURCE_ROOT; };
+		B307576D210ACF320072B8B5 /* iOSInput.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; name = iOSInput.xcfilelist; path = Carthage/iOSInput.xcfilelist; sourceTree = SOURCE_ROOT; };
 		B3274E872106C14500857F52 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Carthage/Build/iOS/CocoaLumberjack.framework; sourceTree = "<group>"; };
 		B3274E882106C14600857F52 /* CocoaLumberjackSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjackSwift.framework; path = Carthage/Build/iOS/CocoaLumberjackSwift.framework; sourceTree = "<group>"; };
 		B328B41120B67C9600AE4E00 /* CocoaLumberjackSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjackSwift.framework; path = ../Carthage/Build/tvOS/CocoaLumberjackSwift.framework; sourceTree = "<group>"; };
@@ -294,6 +298,10 @@
 		1ACEA64A17F7467D0031B1C9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B307576D210ACF320072B8B5 /* iOSInput.xcfilelist */,
+				B307576C210ACF320072B8B5 /* tvOSInput.xcfilelist */,
+				B3075767210ACAE30072B8B5 /* iOSOutput.xcfilelist */,
+				B3075766210ACAE20072B8B5 /* tvOSOutput.xcfilelist */,
 				B3C96EBA1D62C54D003F1E93 /* Info.plist */,
 				1ACEA64B17F7467D0031B1C9 /* PVSupport-Prefix.pch */,
 			);
@@ -412,8 +420,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B3C96ED41D62C5E7003F1E93 /* Build configuration list for PBXNativeTarget "PVSupport" */;
 			buildPhases = (
-				B3E708A820B7E8F9005BAA5A /* Carthage build */,
 				B3C96EC81D62C5E7003F1E93 /* Headers */,
+				B3E708A820B7E8F9005BAA5A /* Carthage build */,
 				B3C96EBF1D62C5E7003F1E93 /* Sources */,
 				B3C96EC71D62C5E7003F1E93 /* Frameworks */,
 				B3C96ED21D62C5E7003F1E93 /* Resources */,
@@ -489,12 +497,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+				"$(SRCROOT)/Carthage/iOSInput.xcfilelist",
+			);
 			inputPaths = (
-				"$(SRCROOT)/Cartfile.resolved",
 			);
 			name = "Carthage build";
+			outputFileListPaths = (
+				"$(SRCROOT)/Carthage/iOSOutput.xcfilelist",
+			);
 			outputPaths = (
-				"$(SRCROOT)/Carthage/.Cartfile.iOS.resolved",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
@@ -505,12 +517,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+				"$(SRCROOT)/Carthage/tvOSInput.xcfilelist",
+			);
 			inputPaths = (
-				"$(SRCROOT)/Cartfile.resolved",
 			);
 			name = "Carthage Build";
+			outputFileListPaths = (
+				"$(SRCROOT)/Carthage/tvOSOutput.xcfilelist",
+			);
 			outputPaths = (
-				"$(SRCROOT)/Carthage/.Cartfile.tvOS.resolved",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
@@ -730,11 +746,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = PVSupport/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.provenance-emu.PVSupport";
 				PRODUCT_NAME = PVSupport;
@@ -776,11 +788,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = PVSupport/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.provenance-emu.PVSupport";
 				PRODUCT_NAME = PVSupport;
@@ -820,11 +828,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = PVSupport/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.provenance-emu.PVSupport";
 				PRODUCT_NAME = PVSupport;
@@ -867,11 +871,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/PVSupport/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.provenance-emu.PVSupport";
@@ -918,11 +918,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/PVSupport/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.provenance-emu.PVSupport";
@@ -967,11 +963,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/PVSupport/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.provenance-emu.PVSupport";
