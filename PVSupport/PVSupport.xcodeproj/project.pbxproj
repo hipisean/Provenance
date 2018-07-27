@@ -401,8 +401,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B3C96EA61D62C3A3003F1E93 /* Build configuration list for PBXNativeTarget "PVSupport tvOS" */;
 			buildPhases = (
-				B3E708A920B7E918005BAA5A /* Carthage Build */,
 				B3C96E9B1D62C3A3003F1E93 /* Headers */,
+				B3E708A920B7E918005BAA5A /* Carthage Build */,
 				B3C96E991D62C3A3003F1E93 /* Sources */,
 				B3C96E9A1D62C3A3003F1E93 /* Frameworks */,
 				B3C96E9C1D62C3A3003F1E93 /* Resources */,
