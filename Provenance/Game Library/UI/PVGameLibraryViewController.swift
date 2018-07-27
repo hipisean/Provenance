@@ -2358,6 +2358,8 @@ extension PVGameLibraryViewController {
 	override var canBecomeFirstResponder: Bool {
 		return true
 	}
+
+	#if os(tvOS)
 	@objc
 	func showMoreInfoCommand() {
 		guard let focusedGame = focusedGame else {
@@ -2365,13 +2367,6 @@ extension PVGameLibraryViewController {
 		}
 		moreInfo(for: focusedGame)
 	}
-
-	#if os(iOS)
-	@objc
-	func settingsCommand() {
-		performSegue(withIdentifier: "SettingsSegue", sender: self)
-	}
-	#endif
 
 	@objc
 	func toggleFavoriteCommand() {
@@ -2428,6 +2423,15 @@ extension PVGameLibraryViewController {
 			}
 		}
 	}
+	#endif
+
+	#if os(iOS)
+	@objc
+	func settingsCommand() {
+		performSegue(withIdentifier: "SettingsSegue", sender: self)
+	}
+	#endif
+
 }
 
 #if os(iOS)
