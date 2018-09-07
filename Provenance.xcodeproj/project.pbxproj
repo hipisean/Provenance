@@ -2008,7 +2008,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "source ~/.bash_profile 2> /dev/null\nsh Scripts/carthage.sh tvOS\n#sh Scripts/fastlane.sh\n";
+			shellScript = "source ~/.bash_profile 2> /dev/null\nsh Scripts/rome-download.sh tvOS\nsh Scripts/carthage.sh tvOS\n#sh Scripts/fastlane.sh\n";
 		};
 		B3E708A720B7E465005BAA5A /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
