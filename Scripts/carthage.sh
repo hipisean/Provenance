@@ -43,6 +43,10 @@ get_xcode_version() {
     "$1" -version 2>/dev/null | sed -ne 's/^Xcode \([^\b ]*\).*/\1/p'
 }
 
+DIR="${BASH_SOURCE%/*}"
+if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
+. "$DIR/setup_env.sh"
+
 # Check for xcodebuild. Alert user if missing
 if which xcodebuild > /dev/null; then
     echo "Has XCode command line tools"
@@ -156,8 +160,12 @@ function carthageManifestUpToDate {
   return 0
 }
 
+
+
 # The main execution starts here
 if carthageBuildPathNotExist $PLATFORM; then
+    bundle_install
+    brew_update
     echo "Carthage build required for $PLATFORM"
     runCarthageAndCopyResolved $PLATFORM
 elif carthageManifestUpToDate $PLATFORM; then
